@@ -1,7 +1,6 @@
 package nebula.domain;
 
 import nebula.domain.OrderPlaced;
-import nebula.domain.OrderChanged;
 import nebula.domain.OrderCancelled;
 import nebula.OrderApplication;
 import javax.persistence.*;
@@ -63,23 +62,18 @@ public class Order  {
 
     @PostPersist
     public void onPostPersist(){
-
-
-        OrderPlaced orderPlaced = new OrderPlaced(this);
-        orderPlaced.publishAfterCommit();
-
         // Get request from Inventory
         //nebula.external.Inventory inventory =
         //    Application.applicationContext.getBean(nebula.external.InventoryService.class)
         //    .getInventory(/** mapping value needed */);
 
     }
-    @PostUpdate
-    public void onPostUpdate(){
+    @PrePersist
+    public void onPrePersist(){
 
 
-        OrderChanged orderChanged = new OrderChanged(this);
-        orderChanged.publishAfterCommit();
+        OrderPlaced orderPlaced = new OrderPlaced(this);
+        orderPlaced.publishAfterCommit();
 
     }
     @PreRemove
