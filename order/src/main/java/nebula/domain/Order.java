@@ -37,7 +37,6 @@ public class Order  {
 
 
         OrderPlaced orderPlaced = new OrderPlaced(this);
-        orderPlaced.publishAfterCommit();
 
         // Get request from Inventory
         nebula.external.Inventory inventory =
@@ -47,9 +46,7 @@ public class Order  {
            System.out.println(inventory);
 
         if (getQty() > inventory.getStock()) throw new RuntimeException("Out of Stock");
-
-        System.out.println();
-
+        orderPlaced.setStatus("Order Processing");
         orderPlaced.publishAfterCommit();
 
     }

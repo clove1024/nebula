@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name = "inventory", url = "${api.url.inventory}", fallback = InventoryServiceImpl.class)
+@FeignClient(name = "inventory", url = "${api.url.inventory}", fallback = FallbackServiceImpl.class)
 public interface InventoryService {
     @RequestMapping(method= RequestMethod.GET, path="/inventories/{id}")
     public Inventory getInventory(@PathVariable("id") Long id);

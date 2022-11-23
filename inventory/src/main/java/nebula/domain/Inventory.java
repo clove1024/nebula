@@ -34,6 +34,16 @@ public class Inventory  {
     
     private Integer stock;
 
+    @PostLoad
+    public void makeDelay(){
+        try {
+            Thread.currentThread().sleep((long) (200 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+   
+    }
+
     @PostPersist
     public void onPostPersist(){
     }
