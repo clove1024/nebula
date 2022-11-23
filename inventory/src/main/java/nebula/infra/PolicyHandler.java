@@ -57,22 +57,7 @@ public class PolicyHandler{
 
     }
 
-    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='OrderChanged'")
-    public void wheneverOrderChanged_ChangeStock(@Payload OrderChanged orderChanged){
 
-        OrderChanged event = orderChanged;
-        System.out.println("\n\n##### listener ChangeStock : " + orderChanged + "\n\n");
-
-
-        
-
-        // Sample Logic //
-        Inventory.changeStock(event);
-        
-
-        
-
-    }
 
 }
 

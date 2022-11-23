@@ -43,9 +43,6 @@ public class Inventory  {
         return inventoryRepository;
     }
 
-
-
-
     public static void decreaseStock(OrderPlaced orderPlaced){
 
         /** Example 1:  new item 
@@ -54,16 +51,16 @@ public class Inventory  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(orderPlaced.get???()).ifPresent(inventory->{
+        repository().findById(orderPlaced.getProductId()).ifPresent(inventory->{
             
-            inventory // do something
+            inventory.setStock(inventory.getStock() - orderPlaced.getQty());
             repository().save(inventory);
 
 
          });
-        */
+
 
         
     }
@@ -75,37 +72,14 @@ public class Inventory  {
 
         */
 
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCancelled.get???()).ifPresent(inventory->{
+        repository().findById(orderCancelled.getProductId()).ifPresent(inventory->{
             
-            inventory // do something
+            inventory.setStock(inventory.getStock() + orderCancelled.getQty());
             repository().save(inventory);
 
 
          });
-        */
 
-        
-    }
-    public static void changeStock(OrderChanged orderChanged){
-
-        /** Example 1:  new item 
-        Inventory inventory = new Inventory();
-        repository().save(inventory);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderChanged.get???()).ifPresent(inventory->{
-            
-            inventory // do something
-            repository().save(inventory);
-
-
-         });
-        */
 
         
     }

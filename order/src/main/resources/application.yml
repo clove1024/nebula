@@ -48,7 +48,7 @@ logging:
 
 api:
   url:
-    inventory: inventory:8082
+    inventory: localhost:8082
 
 
 server:
